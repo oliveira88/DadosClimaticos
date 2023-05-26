@@ -4,10 +4,11 @@ import com.mycompany.projetodadosclimaticos.model.DadosClimaticos;
 import com.mycompany.projetodadosclimaticos.model.observer.IObserver;
 import com.mycompany.projetodadosclimaticos.util.ConvertDate;
 import com.mycompany.projetodadosclimaticos.view.RegistrosDadosClimaticos;
+import java.time.LocalDate;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
-public class RegistrosDadosClimaticosPresenter implements IObserver{
+public class RegistrosDadosClimaticosPresenter implements IObserver {
 
     private final RegistrosDadosClimaticos view;
     private List<DadosClimaticos> listDadosClimaticos;
@@ -16,12 +17,14 @@ public class RegistrosDadosClimaticosPresenter implements IObserver{
 
     public RegistrosDadosClimaticosPresenter(List<DadosClimaticos> listDadosClimaticos) {
         this.view = new RegistrosDadosClimaticos();
-        this.listDadosClimaticos = listDadosClimaticos;
+        if(listDadosClimaticos != null){
+            this.listDadosClimaticos = listDadosClimaticos; 
+        }
 
         this.initTableModel();
 
         this.loadTable();
-        
+
         this.view.setVisible(true);
 
     }
@@ -37,13 +40,16 @@ public class RegistrosDadosClimaticosPresenter implements IObserver{
     }
 
     private void loadTable() {
-        for (DadosClimaticos dadoClimatico : this.listDadosClimaticos) {
-            this.table.addRow(new Object[]{
-               ConvertDate.localDateToString( dadoClimatico.getData()),
-                dadoClimatico.getTemperatura(),
-                dadoClimatico.getUmidadae(),
-                dadoClimatico.getPresao(),});
+        if (this.listDadosClimaticos != null) {
+            for (DadosClimaticos dadoClimatico : this.listDadosClimaticos) {
+                this.table.addRow(new Object[]{
+                    ConvertDate.localDateToString(dadoClimatico.getData()),
+                    dadoClimatico.getTemperatura(),
+                    dadoClimatico.getUmidadae(),
+                    dadoClimatico.getPresao(),});
+            }
         }
+
     }
 
     @Override
@@ -56,5 +62,4 @@ public class RegistrosDadosClimaticosPresenter implements IObserver{
         return view;
     }
 
-   
 }

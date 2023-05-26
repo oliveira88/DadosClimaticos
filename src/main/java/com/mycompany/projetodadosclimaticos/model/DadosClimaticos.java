@@ -1,9 +1,6 @@
 package com.mycompany.projetodadosclimaticos.model;
 
-import com.mycompany.projetodadosclimaticos.model.observer.IObserver;
-import com.mycompany.projetodadosclimaticos.model.subject.ISubject;
 import java.time.LocalDate;
-import java.util.List;
 
 public class DadosClimaticos {
 

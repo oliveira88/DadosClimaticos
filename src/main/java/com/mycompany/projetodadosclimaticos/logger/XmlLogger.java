@@ -8,8 +8,10 @@ import java.util.List;
 public class XmlLogger implements ILogger{
 
     private final XmlLoggerAdaptado xmlLogger;
+    private static XmlLogger xml; 
     
-    public XmlLogger(String fileName) {
+    private XmlLogger(String fileName) {
+       
         this.xmlLogger = new XmlLoggerAdaptado(fileName);
     }
 
@@ -23,5 +25,11 @@ public class XmlLogger implements ILogger{
         return this.xmlLogger.lersArquivo();
     }
 
+    public static XmlLogger SingletonXmlLogger(String fileName){
+        if(xml == null){
+          xml = new XmlLogger(fileName);
+        }
+        return xml;
+    }
   
 }
