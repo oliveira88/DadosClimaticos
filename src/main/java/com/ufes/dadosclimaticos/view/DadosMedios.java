@@ -18,6 +18,7 @@ public class DadosMedios extends javax.swing.JInternalFrame {
      */
     public DadosMedios() {
         initComponents();
+        setLocation(350, 0);
     }
 
     /**

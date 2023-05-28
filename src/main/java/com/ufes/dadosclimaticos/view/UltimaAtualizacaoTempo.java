@@ -10,6 +10,7 @@ public class UltimaAtualizacaoTempo extends javax.swing.JInternalFrame {
      */
     public UltimaAtualizacaoTempo() {
         initComponents();
+        setLocation(0, 450);
     }
 
     /**

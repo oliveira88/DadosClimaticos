@@ -18,6 +18,7 @@ public class RegistrosDadosClimaticos extends javax.swing.JInternalFrame {
      */
     public RegistrosDadosClimaticos() {
         initComponents();
+        setLocation(350, 450);
     }
 
     /**

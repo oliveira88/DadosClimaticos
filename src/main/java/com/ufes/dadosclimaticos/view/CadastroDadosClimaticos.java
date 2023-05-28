@@ -21,6 +21,7 @@ public class CadastroDadosClimaticos extends javax.swing.JInternalFrame {
      */
     public CadastroDadosClimaticos() {
         initComponents();
+        setLocation(0,0);
     }
 
     /**

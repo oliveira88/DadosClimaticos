@@ -42,6 +42,7 @@ public class MaximasMinimas extends javax.swing.JInternalFrame {
         chartPanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
         chartPanel.setBackground(Color.white);
         add(chartPanel);
+        setLocation(700, 0);
         pack();
     }
 
