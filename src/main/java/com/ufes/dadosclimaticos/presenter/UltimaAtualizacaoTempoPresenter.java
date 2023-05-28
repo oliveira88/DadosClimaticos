@@ -32,7 +32,7 @@ public class UltimaAtualizacaoTempoPresenter implements IObserver {
         if (dadosClimaticos != null) {
             this.view.getjLbTempValue().setText(dadosClimaticos.getTemperatura().toString());
             this.view.getjLbPreesaoValue().setText(dadosClimaticos.getPresao().toString());
-            this.view.getjLbUmiValue().setText(dadosClimaticos.getUmidadae().toString());
+            this.view.getjLbUmiValue().setText(dadosClimaticos.getUmidade().toString());
             this.view.getjLbData().setText(ConvertDate.localDateToString(dadosClimaticos.getData()));
         } else {
             this.view.getjLbTempValue().setText("");

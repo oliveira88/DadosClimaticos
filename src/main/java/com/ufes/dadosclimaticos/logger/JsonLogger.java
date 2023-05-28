@@ -4,12 +4,12 @@ import com.ufes.dadosclimaticos.logger.loggerAdaptado.JsonLoggerAdaptado;
 import com.ufes.dadosclimaticos.model.DadosClimaticos;
 import java.util.List;
 
-public class JsonLooger implements ILogger{
+public class JsonLogger implements ILogger{
     
     private final JsonLoggerAdaptado jsonLogger;
-    private static JsonLooger json;
+    private static JsonLogger json;
 
-    public JsonLooger(String fileName) {
+    public JsonLogger(String fileName) {
         this.jsonLogger = new JsonLoggerAdaptado(fileName);
     }
     
@@ -24,9 +24,9 @@ public class JsonLooger implements ILogger{
         return this.jsonLogger.getDadosArquivo();
     }
    
-    public static JsonLooger SingletonJsonLooger (String fileName){
+    public static JsonLogger SingletonJsonLogger (String fileName){
         if(json == null){
-            json = new JsonLooger(fileName);
+            json = new JsonLogger(fileName);
         }
         return json;
     }

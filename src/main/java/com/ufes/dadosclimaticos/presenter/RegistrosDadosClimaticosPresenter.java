@@ -48,7 +48,7 @@ public class RegistrosDadosClimaticosPresenter implements IObserver {
                 this.table.addRow(new Object[]{
                     ConvertDate.localDateToString(dadoClimatico.getData()),
                     dadoClimatico.getTemperatura(),
-                    dadoClimatico.getUmidadae(),
+                    dadoClimatico.getUmidade(),
                     dadoClimatico.getPresao(),});
             }
         }

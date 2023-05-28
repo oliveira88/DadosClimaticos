@@ -18,7 +18,7 @@ import org.w3c.dom.NodeList;
 
 public class XmlLoggerAdaptado {
 
-    private String arquivoPath;
+    private final String arquivoPath;
 
     public XmlLoggerAdaptado(String arquivoPath) {
         this.arquivoPath = arquivoPath;
@@ -30,14 +30,10 @@ public class XmlLoggerAdaptado {
         Document d = dc.newDocument();
         File file = new File(arquivoPath);
         Element raiz;
-        int contador = 1;
 
         if (file.exists()) {
             d = dc.parse(file);
             raiz = d.getDocumentElement();
-            NodeList nodes = d.getElementsByTagName("post");
-            contador = nodes.getLength() + 1;
-
         } else {
             d = dc.newDocument();
             raiz = d.createElement("Posts");
@@ -52,7 +48,7 @@ public class XmlLoggerAdaptado {
         post.appendChild(textoRecebido);
 
         textoRecebido = d.createElement("umidadae");
-        textoRecebido.appendChild(d.createTextNode(dadosClimaticos.getUmidadae().toString()));
+        textoRecebido.appendChild(d.createTextNode(dadosClimaticos.getUmidade().toString()));
         post.appendChild(textoRecebido);
 
         textoRecebido = d.createElement("presao");
@@ -87,9 +83,9 @@ public class XmlLoggerAdaptado {
             Element eElement = (Element) node;
             if (node.getNodeType() == Node.ELEMENT_NODE) {
                 dadoClimatico.setData(LocalDate.parse(eElement.getElementsByTagName("data").item(0).getTextContent()));
-                dadoClimatico.setPresao(Double.parseDouble(eElement.getElementsByTagName("presao").item(0).getTextContent()));
-                dadoClimatico.setTemperatura(Double.parseDouble(eElement.getElementsByTagName("temperatura").item(0).getTextContent()));
-                dadoClimatico.setUmidadae(Double.parseDouble(eElement.getElementsByTagName("umidadae").item(0).getTextContent()));
+                dadoClimatico.setPresao(Double.valueOf(eElement.getElementsByTagName("presao").item(0).getTextContent()));
+                dadoClimatico.setTemperatura(Double.valueOf(eElement.getElementsByTagName("temperatura").item(0).getTextContent()));
+                dadoClimatico.setUmidadae(Double.valueOf(eElement.getElementsByTagName("umidadae").item(0).getTextContent()));
                 dadosClimaticosList.add(dadoClimatico);
             }
         }

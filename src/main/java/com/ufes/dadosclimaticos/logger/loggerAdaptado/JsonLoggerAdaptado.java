@@ -23,22 +23,22 @@ public class JsonLoggerAdaptado {
                 .configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true)
                 .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
 
-        List<DadosClimaticos> existingDados = new ArrayList<>();
+        List<DadosClimaticos> dadosExistentes = new ArrayList<>();
         List<DadosClimaticos> dados = new ArrayList<>();
 
         File file = new File(this.arquivoPath);
         
         if (file.exists() && file.length() > 0) {
-            existingDados = objectMapper.readValue(file, new TypeReference<List<DadosClimaticos>>() {
+            dadosExistentes = objectMapper.readValue(file, new TypeReference<List<DadosClimaticos>>() {
             });
         }
-        if (existingDados == null && existingDados.isEmpty()) {
+        if (dadosExistentes == null && dadosExistentes.isEmpty()) {
             dados.add(dadosClimaticos);
             objectMapper.writeValue(new File(this.arquivoPath), dados);
-
+            
         } else {
-            existingDados.add(dadosClimaticos);
-            objectMapper.writeValue(new File(this.arquivoPath), existingDados);
+            dadosExistentes.add(dadosClimaticos);
+            objectMapper.writeValue(new File(this.arquivoPath), dadosExistentes);
         }
 
     }

@@ -1,7 +1,7 @@
 package com.ufes.dadosclimaticos.presenter;
 
 import com.ufes.dadosclimaticos.logger.ILogger;
-import com.ufes.dadosclimaticos.logger.JsonLooger;
+import com.ufes.dadosclimaticos.logger.JsonLogger;
 import com.ufes.dadosclimaticos.logger.XmlLogger;
 import com.ufes.dadosclimaticos.model.DadosClimaticos;
 import com.ufes.dadosclimaticos.service.EstacaoClimaticaService;
@@ -48,7 +48,7 @@ public class MainScreenPresenter {
         this.ultimaAtualizacaoTempoPresenter = new UltimaAtualizacaoTempoPresenter(getListDadosClimaticosLogger());
         initEstacaoClimaticaService();
         this.cadastroDadosClimaticosPresenter = new CadastroDadosClimaticosPresenter(this.estacaoClimaticaService);
-        this.maximasMinimasPresenter = new MaximasMinimasPresenter();
+        this.maximasMinimasPresenter = new MaximasMinimasPresenter(getListDadosClimaticosLogger());
         this.dadosMediosPresenter = new DadosMediosPresenter();
     }
 
@@ -101,7 +101,7 @@ public class MainScreenPresenter {
             return XmlLogger.SingletonXmlLogger("dadosClimaticoss.xml");
         }
         if("JSON".equalsIgnoreCase(this.tipoSelecionado)){
-            return JsonLooger.SingletonJsonLooger("dadosClimaticos.json");
+            return JsonLogger.SingletonJsonLogger("dadosClimaticos.json");
         }
         return null;
     }

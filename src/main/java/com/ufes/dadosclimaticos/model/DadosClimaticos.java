@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class DadosClimaticos {
 
     private Double temperatura;
-    private Double umidadae;
+    private Double umidade;
     private Double presao;
     private LocalDate data;
 
@@ -17,12 +17,12 @@ public class DadosClimaticos {
         this.temperatura = temperatura;
     }
 
-    public Double getUmidadae() {
-        return umidadae;
+    public Double getUmidade() {
+        return umidade;
     }
 
-    public void setUmidadae(Double umidadae) {
-        this.umidadae = umidadae;
+    public void setUmidadae(Double umidade) {
+        this.umidade = umidade;
     }
 
     public Double getPresao() {
@@ -40,6 +40,4 @@ public class DadosClimaticos {
     public void setData(LocalDate data) {
         this.data = data;
     }
-
-  
 }
