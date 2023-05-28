@@ -14,12 +14,12 @@ import javax.swing.JTextField;
  *
  * @author itix
  */
-public class CadastroDadosClimaticos extends javax.swing.JInternalFrame {
+public class CadastroDadosClimaticosView extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form PrincipalFame
      */
-    public CadastroDadosClimaticos() {
+    public CadastroDadosClimaticosView() {
         initComponents();
         setLocation(0,0);
     }

@@ -11,12 +11,12 @@ import javax.swing.JTable;
  *
  * @author itix
  */
-public class RegistrosDadosClimaticos extends javax.swing.JInternalFrame {
+public class RegistrosDadosClimaticosView extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form s
      */
-    public RegistrosDadosClimaticos() {
+    public RegistrosDadosClimaticosView() {
         initComponents();
         setLocation(350, 450);
     }

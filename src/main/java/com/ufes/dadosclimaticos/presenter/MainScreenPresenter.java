@@ -5,14 +5,14 @@ import com.ufes.dadosclimaticos.logger.JsonLogger;
 import com.ufes.dadosclimaticos.logger.XmlLogger;
 import com.ufes.dadosclimaticos.model.DadosClimaticos;
 import com.ufes.dadosclimaticos.service.EstacaoClimaticaService;
-import com.ufes.dadosclimaticos.view.MainScreen;
+import com.ufes.dadosclimaticos.view.MainScreenView;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
 
 public class MainScreenPresenter {
 
-    private MainScreen viewMain;
+    private MainScreenView viewMain;
     private CadastroDadosClimaticosPresenter cadastroDadosClimaticosPresenter;
     private UltimaAtualizacaoTempoPresenter ultimaAtualizacaoTempoPresenter;
     private RegistrosDadosClimaticosPresenter registrosDadosClimaticosPresenter;
@@ -28,7 +28,7 @@ public class MainScreenPresenter {
     }
 
     public void initMain(String ultimoTipoSelecioando) {
-        this.viewMain = new MainScreen();
+        this.viewMain = new MainScreenView();
         this.setTipoSelecionado(ultimoTipoSelecioando);
         configView();
 
@@ -85,7 +85,7 @@ public class MainScreenPresenter {
         return null;
     }
 
-    public MainScreen getViewMain() {
+    public MainScreenView getViewMain() {
         return viewMain;
     }
 

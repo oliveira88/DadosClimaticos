@@ -5,10 +5,10 @@ import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 
 
-public class MainScreen extends javax.swing.JFrame {
+public class MainScreenView extends javax.swing.JFrame {
 
 
-    public MainScreen() {
+    public MainScreenView() {
         initComponents();
     }
 

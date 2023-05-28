@@ -3,18 +3,18 @@ package com.ufes.dadosclimaticos.presenter;
 import com.ufes.dadosclimaticos.model.DadosClimaticos;
 import com.ufes.dadosclimaticos.service.EstacaoClimaticaService;
 import com.ufes.dadosclimaticos.util.ConvertDate;
-import com.ufes.dadosclimaticos.view.CadastroDadosClimaticos;
+import com.ufes.dadosclimaticos.view.CadastroDadosClimaticosView;
 import java.awt.event.ActionEvent;
 import java.time.LocalDate;
 import javax.swing.JOptionPane;
 
 public class CadastroDadosClimaticosPresenter {
 
-    private final CadastroDadosClimaticos view;
+    private final CadastroDadosClimaticosView view;
     private final EstacaoClimaticaService estacaoClimaticaService;
 
     public CadastroDadosClimaticosPresenter(EstacaoClimaticaService estacaoClimaticaService) {
-        view = new CadastroDadosClimaticos();
+        view = new CadastroDadosClimaticosView();
 
         this.estacaoClimaticaService = estacaoClimaticaService;
         this.initActions();
@@ -72,7 +72,7 @@ public class CadastroDadosClimaticosPresenter {
 
     }
 
-    public CadastroDadosClimaticos getView() {
+    public CadastroDadosClimaticosView getView() {
         return view;
     }
     

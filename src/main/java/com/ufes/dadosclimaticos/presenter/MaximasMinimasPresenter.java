@@ -2,24 +2,24 @@ package com.ufes.dadosclimaticos.presenter;
 
 import com.ufes.dadosclimaticos.model.DadosClimaticos;
 import com.ufes.dadosclimaticos.model.observer.IObserver;
-import com.ufes.dadosclimaticos.view.MaximasMinimas;
+import com.ufes.dadosclimaticos.view.MaximasMinimasView;
 import java.util.List;
 
 
 public class MaximasMinimasPresenter  implements IObserver {
 
-    private final MaximasMinimas view;
+    private final MaximasMinimasView view;
     private List<DadosClimaticos> listDadosClimaticos;
     
     public MaximasMinimasPresenter(List<DadosClimaticos> listDadosClimaticos) {
-        this.view = new MaximasMinimas();
+        this.view = new MaximasMinimasView();
         this.listDadosClimaticos = listDadosClimaticos;
         this.atualizaDados();
         this.view.initUI();
         this.view.setVisible(true);
     }
     
-     public MaximasMinimas getView() {
+     public MaximasMinimasView getView() {
         return view;
     }
 

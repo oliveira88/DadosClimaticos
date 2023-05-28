@@ -3,16 +3,16 @@ package com.ufes.dadosclimaticos.presenter;
 import com.ufes.dadosclimaticos.model.DadosClimaticos;
 import com.ufes.dadosclimaticos.model.observer.IObserver;
 import com.ufes.dadosclimaticos.util.ConvertDate;
-import com.ufes.dadosclimaticos.view.UltimaAtualizacaoTempo;
+import com.ufes.dadosclimaticos.view.UltimaAtualizacaoTempoView;
 import java.util.List;
 
 public class UltimaAtualizacaoTempoPresenter implements IObserver {
 
-    private final UltimaAtualizacaoTempo view;
+    private final UltimaAtualizacaoTempoView view;
     private List<DadosClimaticos> listDadosClimaticos;
 
     public UltimaAtualizacaoTempoPresenter(List<DadosClimaticos> listDadosClimaticos) {
-        this.view = new UltimaAtualizacaoTempo();
+        this.view = new UltimaAtualizacaoTempoView();
         if (listDadosClimaticos != null) {
             this.listDadosClimaticos = listDadosClimaticos;
         }
@@ -49,7 +49,7 @@ public class UltimaAtualizacaoTempoPresenter implements IObserver {
         initAtualizacaoDadosClimaticos();
     }
 
-    public UltimaAtualizacaoTempo getView() {
+    public UltimaAtualizacaoTempoView getView() {
         return view;
     }
 

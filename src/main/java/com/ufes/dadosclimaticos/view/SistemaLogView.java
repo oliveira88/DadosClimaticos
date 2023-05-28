@@ -12,12 +12,12 @@ import javax.swing.JComboBox;
  *
  * @author itix
  */
-public class SistemaLog extends javax.swing.JInternalFrame {
+public class SistemaLogView extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form SistemaLog
      */
-    public SistemaLog() {
+    public SistemaLogView() {
         initComponents();
     }
 

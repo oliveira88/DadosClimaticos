@@ -1,24 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.ufes.dadosclimaticos.view;
 
 import javax.swing.JLabel;
 
-/**
- *
- * @author itix
- */
-public class DadosMedios extends javax.swing.JInternalFrame {
+
+public class UltimaAtualizacaoTempoView extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form Dadosmedios
+     * Creates new form UltimaAtualizacaoTempo
      */
-    public DadosMedios() {
+    public UltimaAtualizacaoTempoView() {
         initComponents();
-        setLocation(350, 0);
+        setLocation(0, 450);
     }
 
     /**
@@ -31,20 +23,24 @@ public class DadosMedios extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         jLbTempValue = new javax.swing.JLabel();
         jLbUmiValue = new javax.swing.JLabel();
         jLbPreesaoValue = new javax.swing.JLabel();
-        jLbNrRegistros = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        jLbData = new javax.swing.JLabel();
 
-        jLabel1.setText("Dados médios");
+        jLabel1.setText("Temperatura");
+
+        jLabel2.setText("Umidade");
 
         jLabel3.setText("Pressão");
 
-        jLabel4.setText("Número de registros");
+        jLabel4.setText("Data");
+
+        jLabel5.setText("Última atualização do tempo");
 
         jLbTempValue.setText("jLabel6");
 
@@ -52,60 +48,54 @@ public class DadosMedios extends javax.swing.JInternalFrame {
 
         jLbPreesaoValue.setText("jLabel8");
 
-        jLbNrRegistros.setText("jLabel9");
-
-        jLabel2.setText("Temperatura");
-
-        jLabel6.setText("Umidade");
+        jLbData.setText("jLabel9");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(52, 52, 52)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
+                        .addComponent(jLabel5)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel6)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel4))
-                        .addGap(53, 53, 53)
+                            .addComponent(jLabel1))
+                        .addGap(33, 33, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLbTempValue)
                             .addComponent(jLbUmiValue)
                             .addComponent(jLbPreesaoValue)
-                            .addComponent(jLbNrRegistros)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(89, 89, 89)
-                        .addComponent(jLabel1)))
-                .addContainerGap(41, Short.MAX_VALUE))
+                            .addComponent(jLbData))
+                        .addGap(116, 116, 116))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel6)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel4))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLbTempValue)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLbUmiValue)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLbPreesaoValue)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLbNrRegistros)))
-                .addGap(10, 10, 10))
+                .addGap(13, 13, 13)
+                .addComponent(jLabel5)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLbTempValue))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLbUmiValue))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLbPreesaoValue))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLbData))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         pack();
@@ -117,26 +107,48 @@ public class DadosMedios extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLbNrRegistros;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLbData;
     private javax.swing.JLabel jLbPreesaoValue;
     private javax.swing.JLabel jLbTempValue;
     private javax.swing.JLabel jLbUmiValue;
     // End of variables declaration//GEN-END:variables
 
+    public JLabel getjLbData() {
+        return jLbData;
+    }
+
+    public void setjLbData(JLabel jLbData) {
+        this.jLbData = jLbData;
+    }
+
     public JLabel getjLbPreesaoValue() {
         return jLbPreesaoValue;
+    }
+
+    public void setjLbPreesaoValue(JLabel jLbPreesaoValue) {
+        this.jLbPreesaoValue = jLbPreesaoValue;
     }
 
     public JLabel getjLbTempValue() {
         return jLbTempValue;
     }
 
+    public void setjLbTempValue(JLabel jLbTempValue) {
+        this.jLbTempValue = jLbTempValue;
+    }
+
     public JLabel getjLbUmiValue() {
         return jLbUmiValue;
     }
 
-    public JLabel getjLbNrRegistros() {
-        return jLbNrRegistros;
+    public void setjLbUmiValue(JLabel jLbUmiValue) {
+        this.jLbUmiValue = jLbUmiValue;
     }
+
+
+
+
+
+
 }

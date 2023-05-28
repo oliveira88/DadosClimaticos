@@ -1,15 +1,15 @@
 package com.ufes.dadosclimaticos.presenter;
 
-import com.ufes.dadosclimaticos.view.SistemaLog;
+import com.ufes.dadosclimaticos.view.SistemaLogView;
 import java.awt.event.ActionEvent;
 
 public class SistemaLogPresenter {
     
     private String tipo;
-    private final SistemaLog view;
+    private final SistemaLogView view;
     private MainScreenPresenter mainView;
     public SistemaLogPresenter(MainScreenPresenter mainView, String tipo) {
-        this.view = new SistemaLog();
+        this.view = new SistemaLogView();
         this.tipo = tipo;
         this.mainView = mainView;
         

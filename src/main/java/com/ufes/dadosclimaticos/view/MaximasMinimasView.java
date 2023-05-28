@@ -18,7 +18,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
  *
  * @author guiro
  */
-public class MaximasMinimas extends javax.swing.JInternalFrame {
+public class MaximasMinimasView extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form MaximasMinimas
@@ -30,7 +30,7 @@ public class MaximasMinimas extends javax.swing.JInternalFrame {
     private DadosClimaticos maxPresao;
     private DadosClimaticos minPresao;
     
-    public MaximasMinimas() {
+    public MaximasMinimasView() {
 //        initComponents();
     }
     public void initUI() {

@@ -1,22 +1,22 @@
 package com.ufes.dadosclimaticos.presenter;
 
 import com.ufes.dadosclimaticos.model.DadosClimaticos;
+import com.ufes.dadosclimaticos.model.observer.IObservable;
 import com.ufes.dadosclimaticos.model.observer.IObserver;
 import com.ufes.dadosclimaticos.util.ConvertDate;
-import com.ufes.dadosclimaticos.view.RegistrosDadosClimaticos;
-import java.time.LocalDate;
+import com.ufes.dadosclimaticos.view.RegistrosDadosClimaticosView;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 public class RegistrosDadosClimaticosPresenter implements IObserver {
 
-    private final RegistrosDadosClimaticos view;
+    private final RegistrosDadosClimaticosView view;
     private List<DadosClimaticos> listDadosClimaticos;
 
     private DefaultTableModel table;
 
     public RegistrosDadosClimaticosPresenter(List<DadosClimaticos> listDadosClimaticos) {
-        this.view = new RegistrosDadosClimaticos();
+        this.view = new RegistrosDadosClimaticosView();
         if(listDadosClimaticos != null){
             this.listDadosClimaticos = listDadosClimaticos; 
         }
@@ -42,6 +42,7 @@ public class RegistrosDadosClimaticosPresenter implements IObserver {
     private void clearTable() {
         this.table.setRowCount(0);
     }
+    
     private void loadTable() {
         if (this.listDadosClimaticos != null) {
             for (DadosClimaticos dadoClimatico : this.listDadosClimaticos) {
@@ -56,14 +57,13 @@ public class RegistrosDadosClimaticosPresenter implements IObserver {
     }
 
     @Override
-    public void update(DadosClimaticos dadosCimaticos) {
+    public void update(IObservable dadosCimaticos) {
         this.listDadosClimaticos.add(dadosCimaticos);
         this.clearTable();
         this.loadTable();
     }
 
-    public RegistrosDadosClimaticos getView() {
+    public RegistrosDadosClimaticosView getView() {
         return view;
     }
-
 }
