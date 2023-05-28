@@ -4,6 +4,16 @@
  */
 package com.ufes.dadosclimaticos.view;
 
+import com.ufes.dadosclimaticos.model.DadosClimaticos;
+import java.awt.Color;
+import javax.swing.BorderFactory;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.CategoryDataset;
+import org.jfree.data.category.DefaultCategoryDataset;
+
 /**
  *
  * @author guiro
@@ -13,10 +23,62 @@ public class MaximasMinimas extends javax.swing.JInternalFrame {
     /**
      * Creates new form MaximasMinimas
      */
+    private DadosClimaticos maxima;
+    private DadosClimaticos minima;
+    
+    
     public MaximasMinimas() {
         initComponents();
+        initUI();
+    }
+    private void initUI() {
+
+        CategoryDataset dataset = createDataset();
+        JFreeChart chart = createChart(dataset);
+
+        ChartPanel chartPanel = new ChartPanel(chart);
+        chartPanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
+        chartPanel.setBackground(Color.white);
+        add(chartPanel);
+        pack();
     }
 
+    private CategoryDataset createDataset() {
+        DefaultCategoryDataset dataset =  new DefaultCategoryDataset();
+        dataset.addValue(maxima.getTemperatura(), "Max", "Temperatura");
+        dataset.addValue(minima.getTemperatura(), "Min", "Temperatura");
+        
+        dataset.addValue(maxima.getUmidade(), "Max", "Umidade");
+        dataset.addValue(minima.getUmidade(), "Min", "Umidade");
+        
+        dataset.addValue(maxima.getPresao(), "Max", "Pressão");
+        dataset.addValue(minima.getPresao(), "Min", "Pressão");
+        
+        return dataset;
+    }
+
+    private JFreeChart createChart(CategoryDataset dataset) {
+        return ChartFactory.createBarChart(
+                "Máximas e Mínimas",
+                "Umidade",
+                null,
+                dataset,
+                PlotOrientation.VERTICAL,
+                true,
+                false,
+                false
+        );
+    }
+
+    public void setMaxima(DadosClimaticos maxima) {
+        this.maxima = maxima;
+    }
+
+    public void setMinima(DadosClimaticos minima) {
+        this.minima = minima;
+    }
+
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,40 +88,17 @@ public class MaximasMinimas extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        jLabel1.setText("Temperatura");
-
-        jLabel2.setText("Umidade");
-
-        jLabel3.setText("Pressão");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addGap(96, 96, 96)
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(40, 40, 40))
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(266, 266, 266)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
-                .addGap(18, 18, 18))
+            .addGap(0, 300, Short.MAX_VALUE)
         );
 
         pack();
@@ -70,8 +109,5 @@ public class MaximasMinimas extends javax.swing.JInternalFrame {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }
