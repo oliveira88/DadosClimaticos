@@ -9,10 +9,18 @@ public class DadosClimaticos {
     private Double presao;
     private LocalDate data;
 
+    public DadosClimaticos() {
+    }
+
+    public DadosClimaticos(Double temperatura, Double umidade, Double presao) {
+        this.temperatura = temperatura;
+        this.umidade = umidade;
+        this.presao = presao;
+    }
+    
     public Double getTemperatura() {
         return temperatura;
     }
-
     public void setTemperatura(Double temperatura) {
         this.temperatura = temperatura;
     }
@@ -21,7 +29,7 @@ public class DadosClimaticos {
         return umidade;
     }
 
-    public void setUmidadae(Double umidade) {
+    public void setUmidade(Double umidade) {
         this.umidade = umidade;
     }
 

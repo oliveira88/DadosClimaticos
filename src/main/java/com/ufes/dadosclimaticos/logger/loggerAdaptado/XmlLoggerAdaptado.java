@@ -85,7 +85,7 @@ public class XmlLoggerAdaptado {
                 dadoClimatico.setData(LocalDate.parse(eElement.getElementsByTagName("data").item(0).getTextContent()));
                 dadoClimatico.setPresao(Double.valueOf(eElement.getElementsByTagName("presao").item(0).getTextContent()));
                 dadoClimatico.setTemperatura(Double.valueOf(eElement.getElementsByTagName("temperatura").item(0).getTextContent()));
-                dadoClimatico.setUmidadae(Double.valueOf(eElement.getElementsByTagName("umidadae").item(0).getTextContent()));
+                dadoClimatico.setUmidade(Double.valueOf(eElement.getElementsByTagName("umidadae").item(0).getTextContent()));
                 dadosClimaticosList.add(dadoClimatico);
             }
         }

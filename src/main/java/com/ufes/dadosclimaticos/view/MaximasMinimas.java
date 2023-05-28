@@ -23,15 +23,17 @@ public class MaximasMinimas extends javax.swing.JInternalFrame {
     /**
      * Creates new form MaximasMinimas
      */
-    private DadosClimaticos maxima;
-    private DadosClimaticos minima;
-    
+    private DadosClimaticos maxTemperatura;
+    private DadosClimaticos minTemperatura;
+    private DadosClimaticos maxUmidade;
+    private DadosClimaticos minUmidade; 
+    private DadosClimaticos maxPresao;
+    private DadosClimaticos minPresao;
     
     public MaximasMinimas() {
-        initComponents();
-        initUI();
+//        initComponents();
     }
-    private void initUI() {
+    public void initUI() {
 
         CategoryDataset dataset = createDataset();
         JFreeChart chart = createChart(dataset);
@@ -45,14 +47,14 @@ public class MaximasMinimas extends javax.swing.JInternalFrame {
 
     private CategoryDataset createDataset() {
         DefaultCategoryDataset dataset =  new DefaultCategoryDataset();
-        dataset.addValue(maxima.getTemperatura(), "Max", "Temperatura");
-        dataset.addValue(minima.getTemperatura(), "Min", "Temperatura");
+        dataset.addValue(maxTemperatura.getTemperatura(), "Max", "Temperatura");
+        dataset.addValue(minTemperatura.getTemperatura(), "Min", "Temperatura");
         
-        dataset.addValue(maxima.getUmidade(), "Max", "Umidade");
-        dataset.addValue(minima.getUmidade(), "Min", "Umidade");
+        dataset.addValue(maxUmidade.getUmidade(), "Max", "Umidade");
+        dataset.addValue(minUmidade.getUmidade(), "Min", "Umidade");
         
-        dataset.addValue(maxima.getPresao(), "Max", "Pressão");
-        dataset.addValue(minima.getPresao(), "Min", "Pressão");
+        dataset.addValue(maxPresao.getPresao(), "Max", "Pressão");
+        dataset.addValue(minPresao.getPresao(), "Min", "Pressão");
         
         return dataset;
     }
@@ -70,14 +72,29 @@ public class MaximasMinimas extends javax.swing.JInternalFrame {
         );
     }
 
-    public void setMaxima(DadosClimaticos maxima) {
-        this.maxima = maxima;
+    public void setMaxTemperatura(DadosClimaticos maxTemperatura) {
+        this.maxTemperatura = maxTemperatura;
     }
 
-    public void setMinima(DadosClimaticos minima) {
-        this.minima = minima;
+    public void setMinTemperatura(DadosClimaticos minTemperatura) {
+        this.minTemperatura = minTemperatura;
     }
 
+    public void setMaxUmidade(DadosClimaticos maxUmidade) {
+        this.maxUmidade = maxUmidade;
+    }
+
+    public void setMinUmidade(DadosClimaticos minUmidade) {
+        this.minUmidade = minUmidade;
+    }
+
+    public void setMaxPresao(DadosClimaticos maxPresao) {
+        this.maxPresao = maxPresao;
+    }
+
+    public void setMinPresao(DadosClimaticos minPresao) {
+        this.minPresao = minPresao;
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.

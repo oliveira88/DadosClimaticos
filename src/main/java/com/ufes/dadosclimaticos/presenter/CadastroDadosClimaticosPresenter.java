@@ -43,7 +43,7 @@ public class CadastroDadosClimaticosPresenter {
         DadosClimaticos dadoClimatico = new DadosClimaticos();
         dadoClimatico.setTemperatura(Double.parseDouble(this.view.getjTextTemperatura().getText()));
         dadoClimatico.setPresao(Double.parseDouble(this.view.getjTextPressao().getText()));
-        dadoClimatico.setUmidadae(Double.parseDouble(this.view.getJtxtUmidade().getText()));
+        dadoClimatico.setUmidade(Double.parseDouble(this.view.getJtxtUmidade().getText()));
         dadoClimatico.setData(getDateOfTextField());
         return dadoClimatico;
     }

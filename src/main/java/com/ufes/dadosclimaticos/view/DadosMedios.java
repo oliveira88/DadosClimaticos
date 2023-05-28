@@ -5,6 +5,8 @@
  */
 package com.ufes.dadosclimaticos.view;
 
+import javax.swing.JLabel;
+
 /**
  *
  * @author itix
@@ -33,7 +35,7 @@ public class DadosMedios extends javax.swing.JInternalFrame {
         jLbTempValue = new javax.swing.JLabel();
         jLbUmiValue = new javax.swing.JLabel();
         jLbPreesaoValue = new javax.swing.JLabel();
-        jLbData = new javax.swing.JLabel();
+        jLbNrRegistros = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
 
@@ -49,7 +51,7 @@ public class DadosMedios extends javax.swing.JInternalFrame {
 
         jLbPreesaoValue.setText("jLabel8");
 
-        jLbData.setText("jLabel9");
+        jLbNrRegistros.setText("jLabel9");
 
         jLabel2.setText("Temperatura");
 
@@ -73,7 +75,7 @@ public class DadosMedios extends javax.swing.JInternalFrame {
                             .addComponent(jLbTempValue)
                             .addComponent(jLbUmiValue)
                             .addComponent(jLbPreesaoValue)
-                            .addComponent(jLbData)))
+                            .addComponent(jLbNrRegistros)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(89, 89, 89)
                         .addComponent(jLabel1)))
@@ -101,7 +103,7 @@ public class DadosMedios extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLbPreesaoValue)
                         .addGap(18, 18, 18)
-                        .addComponent(jLbData)))
+                        .addComponent(jLbNrRegistros)))
                 .addGap(10, 10, 10))
         );
 
@@ -115,9 +117,25 @@ public class DadosMedios extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLbData;
+    private javax.swing.JLabel jLbNrRegistros;
     private javax.swing.JLabel jLbPreesaoValue;
     private javax.swing.JLabel jLbTempValue;
     private javax.swing.JLabel jLbUmiValue;
     // End of variables declaration//GEN-END:variables
+
+    public JLabel getjLbPreesaoValue() {
+        return jLbPreesaoValue;
+    }
+
+    public JLabel getjLbTempValue() {
+        return jLbTempValue;
+    }
+
+    public JLabel getjLbUmiValue() {
+        return jLbUmiValue;
+    }
+
+    public JLabel getjLbNrRegistros() {
+        return jLbNrRegistros;
+    }
 }

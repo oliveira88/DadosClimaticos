@@ -34,7 +34,7 @@
                           <Component id="jLbTempValue" alignment="1" min="-2" max="-2" attributes="0"/>
                           <Component id="jLbUmiValue" alignment="1" min="-2" max="-2" attributes="0"/>
                           <Component id="jLbPreesaoValue" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLbData" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLbNrRegistros" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -69,7 +69,7 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jLbPreesaoValue" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jLbData" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLbNrRegistros" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
@@ -108,7 +108,7 @@
         <Property name="text" type="java.lang.String" value="jLabel8"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLbData">
+    <Component class="javax.swing.JLabel" name="jLbNrRegistros">
       <Properties>
         <Property name="text" type="java.lang.String" value="jLabel9"/>
       </Properties>

@@ -49,7 +49,7 @@ public class MainScreenPresenter {
         initEstacaoClimaticaService();
         this.cadastroDadosClimaticosPresenter = new CadastroDadosClimaticosPresenter(this.estacaoClimaticaService);
         this.maximasMinimasPresenter = new MaximasMinimasPresenter(getListDadosClimaticosLogger());
-        this.dadosMediosPresenter = new DadosMediosPresenter();
+        this.dadosMediosPresenter = new DadosMediosPresenter(getListDadosClimaticosLogger());
     }
 
     private void initPanel() {
