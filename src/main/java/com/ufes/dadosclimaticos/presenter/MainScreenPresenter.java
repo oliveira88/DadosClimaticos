@@ -38,7 +38,7 @@ public class MainScreenPresenter {
         this.initPresenters();
         initPanel();
         initAction();
-
+        this.ajusteQtdRegistro();
         this.viewMain.setVisible(true);
     }
 
@@ -46,10 +46,11 @@ public class MainScreenPresenter {
         this.estacaoClimaticaService = new EstacaoClimaticaService(this.log);
         this.registrosDadosClimaticosPresenter = new RegistrosDadosClimaticosPresenter(getListDadosClimaticosLogger());
         this.ultimaAtualizacaoTempoPresenter = new UltimaAtualizacaoTempoPresenter(getListDadosClimaticosLogger());
-        initEstacaoClimaticaService();
-        this.cadastroDadosClimaticosPresenter = new CadastroDadosClimaticosPresenter(this.estacaoClimaticaService);
         this.maximasMinimasPresenter = new MaximasMinimasPresenter(getListDadosClimaticosLogger());
         this.dadosMediosPresenter = new DadosMediosPresenter(getListDadosClimaticosLogger());
+        initEstacaoClimaticaService();
+        this.cadastroDadosClimaticosPresenter = new CadastroDadosClimaticosPresenter(this.estacaoClimaticaService);
+      
     }
 
     private void initPanel() {
@@ -64,6 +65,8 @@ public class MainScreenPresenter {
     private void initEstacaoClimaticaService() {
         this.estacaoClimaticaService.addObserver(this.registrosDadosClimaticosPresenter);
         this.estacaoClimaticaService.addObserver(this.ultimaAtualizacaoTempoPresenter);
+        this.estacaoClimaticaService.addObserver(this.maximasMinimasPresenter);
+        this.estacaoClimaticaService.addObserver(this.dadosMediosPresenter);
     }
 
     private void configView() {
@@ -104,5 +107,9 @@ public class MainScreenPresenter {
             return JsonLogger.SingletonJsonLogger("dadosClimaticos.json");
         }
         return null;
+    }
+    
+    private void ajusteQtdRegistro() {
+        this.viewMain.getjLbNrRegistro().setText(String.valueOf(getListDadosClimaticosLogger().size()));
     }
 }
