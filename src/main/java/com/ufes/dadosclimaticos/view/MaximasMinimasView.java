@@ -1,14 +1,21 @@
 package com.ufes.dadosclimaticos.view;
 
 import com.ufes.dadosclimaticos.model.DadosClimaticos;
+import com.ufes.dadosclimaticos.util.CustomLabelGenerator;
 import java.awt.Color;
+import java.awt.Font;
 import javax.swing.BorderFactory;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.labels.CategoryItemLabelGenerator;
+import org.jfree.chart.labels.ItemLabelAnchor;
+import org.jfree.chart.labels.ItemLabelPosition;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.ui.TextAnchor;
 
 public class MaximasMinimasView extends javax.swing.JInternalFrame {
     private DadosClimaticos maxTemperatura;
@@ -18,7 +25,7 @@ public class MaximasMinimasView extends javax.swing.JInternalFrame {
     private DadosClimaticos maxPresao;
     private DadosClimaticos minPresao;
     private DefaultCategoryDataset dataset;
-    
+    BarRenderer renderer;
     public MaximasMinimasView() { }
     public void initUI() {
 
@@ -28,6 +35,15 @@ public class MaximasMinimasView extends javax.swing.JInternalFrame {
         ChartPanel chartPanel = new ChartPanel(chart);
         chartPanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
         chartPanel.setBackground(Color.white);
+        this.renderer = (BarRenderer) chart.getCategoryPlot().getRenderer();
+        chart.getCategoryPlot().getRangeAxis().setUpperMargin(0.5);
+        
+        CategoryItemLabelGenerator labelGenerator = new CustomLabelGenerator(maxTemperatura, minTemperatura, maxUmidade, minUmidade, maxPresao, minPresao);
+        this.renderer.setBaseItemLabelGenerator(labelGenerator);
+        this.renderer.setBaseItemLabelsVisible(true);
+        this.renderer.setBaseItemLabelFont(new Font("Arial", Font.BOLD, 12));
+        renderer.setBasePositiveItemLabelPosition(new ItemLabelPosition(ItemLabelAnchor.OUTSIDE12, TextAnchor.BOTTOM_CENTER));
+        
         add(chartPanel);
         setLocation(700, 0);
         pack();
@@ -67,6 +83,9 @@ public class MaximasMinimasView extends javax.swing.JInternalFrame {
         this.dataset.setValue(minUmidade.getUmidade(), "Min", "Umidade");
         this.dataset.setValue(maxPresao.getPresao(), "Max", "Pressão");
         this.dataset.setValue(minPresao.getPresao(), "Min", "Pressão");
+        
+        CategoryItemLabelGenerator labelGenerator = new CustomLabelGenerator(maxTemperatura, minTemperatura, maxUmidade, minUmidade, maxPresao, minPresao);
+        this.renderer.setBaseItemLabelGenerator(labelGenerator);
     }
 
     public void setMaxTemperatura(DadosClimaticos maxTemperatura) {
