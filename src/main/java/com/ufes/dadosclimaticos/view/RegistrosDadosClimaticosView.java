@@ -5,6 +5,7 @@
  */
 package com.ufes.dadosclimaticos.view;
 
+import javax.swing.JButton;
 import javax.swing.JTable;
 
 /**
@@ -33,6 +34,7 @@ public class RegistrosDadosClimaticosView extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jtblRegistros = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        jBtnRemover = new javax.swing.JButton();
 
         jtblRegistros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -55,6 +57,8 @@ public class RegistrosDadosClimaticosView extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Registros de dados climáticos");
 
+        jBtnRemover.setText("Remover");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -62,12 +66,18 @@ public class RegistrosDadosClimaticosView extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(148, 148, 148)
-                        .addComponent(jLabel1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(17, 17, 17)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(148, 148, 148)
+                                .addComponent(jLabel1)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jBtnRemover)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -76,7 +86,9 @@ public class RegistrosDadosClimaticosView extends javax.swing.JInternalFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jBtnRemover)
+                .addGap(8, 8, 8))
         );
 
         pack();
@@ -84,6 +96,7 @@ public class RegistrosDadosClimaticosView extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBtnRemover;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jtblRegistros;
@@ -97,7 +110,7 @@ public class RegistrosDadosClimaticosView extends javax.swing.JInternalFrame {
         this.jtblRegistros = jtblRegistros;
     }
 
-
-
-
+    public JButton getjBtnRemover() {
+        return jBtnRemover;
+    }
 }

@@ -43,6 +43,8 @@ public class JsonLoggerAdaptado {
 
     }
 
+    public void removerDadoArquivo(DadosClimaticos dadosClimaticos) throws Exception {}
+    
     public List<DadosClimaticos> getDadosArquivo() throws Exception {
         ObjectMapper objectMapper = new ObjectMapper().registerModule(new JavaTimeModule())
                 .configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true)

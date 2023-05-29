@@ -7,7 +7,7 @@ public class SistemaLogPresenter {
     
     private String tipo;
     private final SistemaLogView view;
-    private MainScreenPresenter mainView;
+    private final MainScreenPresenter mainView;
     public SistemaLogPresenter(MainScreenPresenter mainView, String tipo) {
         this.view = new SistemaLogView();
         this.tipo = tipo;

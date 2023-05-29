@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -47,7 +48,7 @@ public class XmlLoggerAdaptado {
         textoRecebido.appendChild(d.createTextNode(dadosClimaticos.getTemperatura().toString()));
         post.appendChild(textoRecebido);
 
-        textoRecebido = d.createElement("umidadae");
+        textoRecebido = d.createElement("umidade");
         textoRecebido.appendChild(d.createTextNode(dadosClimaticos.getUmidade().toString()));
         post.appendChild(textoRecebido);
 
@@ -61,14 +62,38 @@ public class XmlLoggerAdaptado {
 
         TransformerFactory tf = TransformerFactory.newInstance();
         Transformer t = tf.newTransformer();
-
+        t.setOutputProperty(OutputKeys.INDENT, "yes");
+        t.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
         DOMSource domSource = new DOMSource(d);
         StreamResult streamResult = new StreamResult(new File(arquivoPath));
 
         t.transform(domSource, streamResult);
 
     }
-
+    
+    public void removerDadoArquivo(DadosClimaticos dadosClimaticos) throws Exception {
+        File file = new File(arquivoPath);
+//        List<DadosClimaticos> dadosClimaticosList = new ArrayList<>();;
+        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+        DocumentBuilder db = dbf.newDocumentBuilder();
+        Document doc = db.parse(file);
+        doc.getDocumentElement().normalize();
+        NodeList nodeList = doc.getElementsByTagName("post");
+//        for (int itr = 0; itr < nodeList.getLength(); itr++) {
+//            DadosClimaticos dadoClimatico = new DadosClimaticos();
+//            Node node = nodeList.item(itr);
+//            Element eElement = (Element) node;
+//            if (node.getNodeType() == Node.ELEMENT_NODE) {
+//                dadoClimatico.setData(LocalDate.parse(eElement.getElementsByTagName("data").item(0).getTextContent()));
+//                dadoClimatico.setPresao(Double.valueOf(eElement.getElementsByTagName("presao").item(0).getTextContent()));
+//                dadoClimatico.setTemperatura(Double.valueOf(eElement.getElementsByTagName("temperatura").item(0).getTextContent()));
+//                dadoClimatico.setUmidade(Double.valueOf(eElement.getElementsByTagName("umidade").item(0).getTextContent()));
+//                dadosClimaticosList.add(dadoClimatico);
+//            }
+//        }
+//        return dadosClimaticosList;
+    }
+    
     public List<DadosClimaticos> lersArquivo() throws Exception {
         List<DadosClimaticos> dadosClimaticosList = new ArrayList<>();
         File file = new File(arquivoPath);
@@ -85,7 +110,7 @@ public class XmlLoggerAdaptado {
                 dadoClimatico.setData(LocalDate.parse(eElement.getElementsByTagName("data").item(0).getTextContent()));
                 dadoClimatico.setPresao(Double.valueOf(eElement.getElementsByTagName("presao").item(0).getTextContent()));
                 dadoClimatico.setTemperatura(Double.valueOf(eElement.getElementsByTagName("temperatura").item(0).getTextContent()));
-                dadoClimatico.setUmidade(Double.valueOf(eElement.getElementsByTagName("umidadae").item(0).getTextContent()));
+                dadoClimatico.setUmidade(Double.valueOf(eElement.getElementsByTagName("umidade").item(0).getTextContent()));
                 dadosClimaticosList.add(dadoClimatico);
             }
         }

@@ -4,13 +4,15 @@ import com.ufes.dadosclimaticos.logger.ILogger;
 import com.ufes.dadosclimaticos.logger.JsonLogger;
 import com.ufes.dadosclimaticos.logger.XmlLogger;
 import com.ufes.dadosclimaticos.model.DadosClimaticos;
+import com.ufes.dadosclimaticos.model.observer.DadosClimaticosObservable;
+import com.ufes.dadosclimaticos.model.observer.IObservable;
+import com.ufes.dadosclimaticos.model.observer.IObserver;
 import com.ufes.dadosclimaticos.service.EstacaoClimaticaService;
 import com.ufes.dadosclimaticos.view.MainScreenView;
-import java.util.ArrayList;
-import java.util.List;
+
 import javax.swing.JFrame;
 
-public class MainScreenPresenter {
+public class MainScreenPresenter implements IObserver {
 
     private MainScreenView viewMain;
     private CadastroDadosClimaticosPresenter cadastroDadosClimaticosPresenter;
@@ -20,7 +22,6 @@ public class MainScreenPresenter {
     private MaximasMinimasPresenter maximasMinimasPresenter;
     private ILogger log;
     private EstacaoClimaticaService estacaoClimaticaService;
-    private SistemaLogPresenter sistemaLogPresenter;
     private String tipoSelecionado = "XML";
 
     public MainScreenPresenter() {
@@ -30,27 +31,26 @@ public class MainScreenPresenter {
     public void initMain(String ultimoTipoSelecioando) {
         this.viewMain = new MainScreenView();
         this.setTipoSelecionado(ultimoTipoSelecioando);
-        configView();
+        this.configView();
 
         this.log = getInstanciaLogger();
         if(this.log == null) return;
         
         this.initPresenters();
-        initPanel();
-        initAction();
+        this.initPanel();
+        this.initAction();
         this.ajusteQtdRegistro();
         this.viewMain.setVisible(true);
     }
 
     private void initPresenters() {
         this.estacaoClimaticaService = new EstacaoClimaticaService(this.log);
-        this.registrosDadosClimaticosPresenter = new RegistrosDadosClimaticosPresenter(getListDadosClimaticosLogger());
-        this.ultimaAtualizacaoTempoPresenter = new UltimaAtualizacaoTempoPresenter(getListDadosClimaticosLogger());
-        this.maximasMinimasPresenter = new MaximasMinimasPresenter(getListDadosClimaticosLogger());
-        this.dadosMediosPresenter = new DadosMediosPresenter(getListDadosClimaticosLogger());
-        initEstacaoClimaticaService();
+        this.registrosDadosClimaticosPresenter = new RegistrosDadosClimaticosPresenter(this.estacaoClimaticaService);
+        this.ultimaAtualizacaoTempoPresenter = new UltimaAtualizacaoTempoPresenter(this.estacaoClimaticaService.getDadosClimaticosObservable());
+        this.maximasMinimasPresenter = new MaximasMinimasPresenter(this.estacaoClimaticaService.getDadosClimaticosObservable());
+        this.dadosMediosPresenter = new DadosMediosPresenter(this.estacaoClimaticaService.getDadosClimaticosObservable());
         this.cadastroDadosClimaticosPresenter = new CadastroDadosClimaticosPresenter(this.estacaoClimaticaService);
-      
+        this.initObservers();
     }
 
     private void initPanel() {
@@ -62,11 +62,14 @@ public class MainScreenPresenter {
                 
     }
 
-    private void initEstacaoClimaticaService() {
-        this.estacaoClimaticaService.addObserver(this.registrosDadosClimaticosPresenter);
-        this.estacaoClimaticaService.addObserver(this.ultimaAtualizacaoTempoPresenter);
-        this.estacaoClimaticaService.addObserver(this.maximasMinimasPresenter);
-        this.estacaoClimaticaService.addObserver(this.dadosMediosPresenter);
+    private void initObservers() {
+        this.estacaoClimaticaService.getDadosClimaticosObservable().addObserver(
+            this.registrosDadosClimaticosPresenter,
+            this.ultimaAtualizacaoTempoPresenter,
+            this.maximasMinimasPresenter,
+            this.dadosMediosPresenter,
+            this
+        );
     }
 
     private void configView() {
@@ -74,16 +77,6 @@ public class MainScreenPresenter {
         viewMain.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    private List<DadosClimaticos> getListDadosClimaticosLogger() {
-        try {
-            if (this.log.Logler() != null) {
-                return this.log.Logler();
-            }
-        } catch (Exception ex) {
-            return new ArrayList<>();
-        }
-        return null;
-    }
 
     public MainScreenView getViewMain() {
         return viewMain;
@@ -91,7 +84,7 @@ public class MainScreenPresenter {
 
     private void initAction() {
         this.viewMain.getjMenuItem().addActionListener(ae -> 
-            this.sistemaLogPresenter = new SistemaLogPresenter(this, this.tipoSelecionado)
+                new SistemaLogPresenter(this, this.tipoSelecionado)
         );
     }
 
@@ -110,6 +103,15 @@ public class MainScreenPresenter {
     }
     
     private void ajusteQtdRegistro() {
-        this.viewMain.getjLbNrRegistro().setText(String.valueOf(getListDadosClimaticosLogger().size()));
+        int qtdRegistro = this.estacaoClimaticaService.getDadosClimaticosObservable().getDadosList().size();
+        this.viewMain.getjLbNrRegistro().setText(String.valueOf(qtdRegistro));
+    }
+    
+    @Override
+    public void update(IObservable observable) {
+        if(observable instanceof DadosClimaticosObservable){
+            this.estacaoClimaticaService.setDadosClimaticosObservable((DadosClimaticosObservable)observable);
+            this.ajusteQtdRegistro();
+        }
     }
 }

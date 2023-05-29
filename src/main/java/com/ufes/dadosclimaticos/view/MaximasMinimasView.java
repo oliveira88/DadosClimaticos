@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package com.ufes.dadosclimaticos.view;
 
 import com.ufes.dadosclimaticos.model.DadosClimaticos;
@@ -14,28 +10,19 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 
-/**
- *
- * @author guiro
- */
 public class MaximasMinimasView extends javax.swing.JInternalFrame {
-
-    /**
-     * Creates new form MaximasMinimas
-     */
     private DadosClimaticos maxTemperatura;
     private DadosClimaticos minTemperatura;
     private DadosClimaticos maxUmidade;
     private DadosClimaticos minUmidade; 
     private DadosClimaticos maxPresao;
     private DadosClimaticos minPresao;
+    private DefaultCategoryDataset dataset;
     
-    public MaximasMinimasView() {
-//        initComponents();
-    }
+    public MaximasMinimasView() { }
     public void initUI() {
 
-        CategoryDataset dataset = createDataset();
+        this.dataset = createDataset();
         JFreeChart chart = createChart(dataset);
 
         ChartPanel chartPanel = new ChartPanel(chart);
@@ -46,20 +33,20 @@ public class MaximasMinimasView extends javax.swing.JInternalFrame {
         pack();
     }
 
-    private CategoryDataset createDataset() {
+    private DefaultCategoryDataset createDataset() {
         DefaultCategoryDataset dataset =  new DefaultCategoryDataset();
-        dataset.addValue(maxTemperatura.getTemperatura(), "Max", "Temperatura");
-        dataset.addValue(minTemperatura.getTemperatura(), "Min", "Temperatura");
+        dataset.setValue(maxTemperatura.getTemperatura(), "Max", "Temperatura");
+        dataset.setValue(minTemperatura.getTemperatura(), "Min", "Temperatura");
         
-        dataset.addValue(maxUmidade.getUmidade(), "Max", "Umidade");
-        dataset.addValue(minUmidade.getUmidade(), "Min", "Umidade");
+        dataset.setValue(maxUmidade.getUmidade(), "Max", "Umidade");
+        dataset.setValue(minUmidade.getUmidade(), "Min", "Umidade");
         
-        dataset.addValue(maxPresao.getPresao(), "Max", "Pressão");
-        dataset.addValue(minPresao.getPresao(), "Min", "Pressão");
-        
+        dataset.setValue(maxPresao.getPresao(), "Max", "Pressão");
+        dataset.setValue(minPresao.getPresao(), "Min", "Pressão");
         return dataset;
     }
 
+    
     private JFreeChart createChart(CategoryDataset dataset) {
         return ChartFactory.createBarChart(
                 "Máximas e Mínimas",
@@ -71,6 +58,15 @@ public class MaximasMinimasView extends javax.swing.JInternalFrame {
                 false,
                 false
         );
+    }
+
+    public void atualizaDadosClimaticos() {
+        this.dataset.setValue(maxTemperatura.getTemperatura(), "Max", "Temperatura");
+        this.dataset.setValue(minTemperatura.getTemperatura(), "Min", "Temperatura");
+        this.dataset.setValue(maxUmidade.getUmidade(), "Max", "Umidade");
+        this.dataset.setValue(minUmidade.getUmidade(), "Min", "Umidade");
+        this.dataset.setValue(maxPresao.getPresao(), "Max", "Pressão");
+        this.dataset.setValue(minPresao.getPresao(), "Min", "Pressão");
     }
 
     public void setMaxTemperatura(DadosClimaticos maxTemperatura) {
@@ -87,6 +83,7 @@ public class MaximasMinimasView extends javax.swing.JInternalFrame {
 
     public void setMinUmidade(DadosClimaticos minUmidade) {
         this.minUmidade = minUmidade;
+        
     }
 
     public void setMaxPresao(DadosClimaticos maxPresao) {

@@ -16,12 +16,17 @@ public class XmlLogger implements ILogger{
     }
 
     @Override
-    public void logSalvar(DadosClimaticos dadosClimaticos) throws Exception{
+    public void salvar(DadosClimaticos dadosClimaticos) throws Exception{
         this.xmlLogger.gravarArquivo(dadosClimaticos);
+    }
+    
+     @Override
+    public void remover(DadosClimaticos dadosClimaticos) throws Exception {
+        this.xmlLogger.removerDadoArquivo(dadosClimaticos);
     }
 
     @Override
-    public List<DadosClimaticos> Logler() throws Exception {
+    public List<DadosClimaticos> ler() throws Exception {
         return this.xmlLogger.lersArquivo();
     }
 
@@ -31,5 +36,7 @@ public class XmlLogger implements ILogger{
         }
         return xml;
     }
+
+   
   
 }

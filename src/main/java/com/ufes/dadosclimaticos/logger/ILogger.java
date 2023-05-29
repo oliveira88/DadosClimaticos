@@ -5,8 +5,7 @@ import java.util.List;
 
 public interface ILogger {
 
-   public void logSalvar(DadosClimaticos dadosClimaticos) throws Exception;
-
-   public List<DadosClimaticos> Logler() throws Exception;
-
+   public void salvar(DadosClimaticos dadosClimaticos) throws Exception;
+   public void remover(DadosClimaticos dadosClimaticos) throws Exception;
+   public List<DadosClimaticos> ler() throws Exception;
 }

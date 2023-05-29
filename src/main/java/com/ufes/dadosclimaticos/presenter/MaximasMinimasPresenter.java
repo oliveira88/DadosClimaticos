@@ -1,19 +1,21 @@
 package com.ufes.dadosclimaticos.presenter;
 
 import com.ufes.dadosclimaticos.model.DadosClimaticos;
+import com.ufes.dadosclimaticos.model.observer.DadosClimaticosObservable;
+import com.ufes.dadosclimaticos.model.observer.IObservable;
 import com.ufes.dadosclimaticos.model.observer.IObserver;
 import com.ufes.dadosclimaticos.view.MaximasMinimasView;
-import java.util.List;
 
 
-public class MaximasMinimasPresenter  implements IObserver {
+public class MaximasMinimasPresenter implements IObserver {
 
     private final MaximasMinimasView view;
-    private List<DadosClimaticos> listDadosClimaticos;
+    private DadosClimaticosObservable dadosClimaticosObservable;
     
-    public MaximasMinimasPresenter(List<DadosClimaticos> listDadosClimaticos) {
+    
+    public MaximasMinimasPresenter(DadosClimaticosObservable dadosClimaticosObservable) {
+        this.dadosClimaticosObservable = dadosClimaticosObservable;
         this.view = new MaximasMinimasView();
-        this.listDadosClimaticos = listDadosClimaticos;
         this.atualizaDados();
         this.view.initUI();
         this.view.setVisible(true);
@@ -31,7 +33,7 @@ public class MaximasMinimasPresenter  implements IObserver {
         DadosClimaticos maxPresao = new DadosClimaticos();
         DadosClimaticos minPresao = new DadosClimaticos();
         
-         for(DadosClimaticos dado : listDadosClimaticos ) {
+         for(DadosClimaticos dado : dadosClimaticosObservable.getDadosList()) {
             if(maxTemperatura.getTemperatura() == null || dado.getTemperatura() > maxTemperatura.getTemperatura()) {
                 maxTemperatura.setTemperatura(dado.getTemperatura());
                 maxTemperatura.setData(dado.getData());
@@ -66,14 +68,15 @@ public class MaximasMinimasPresenter  implements IObserver {
         this.view.setMinTemperatura(minTemperatura);
         this.view.setMinUmidade(minUmidade);
         this.view.setMinPresao(minPresao);
-
      }
      
     @Override
-    public void update(DadosClimaticos dadosCimaticos) {
-        this.listDadosClimaticos.add(dadosCimaticos);
-        this.atualizaDados();
-        this.view.initUI();
+    public void update(IObservable observable) {
+        if(observable instanceof DadosClimaticosObservable){
+            this.dadosClimaticosObservable = (DadosClimaticosObservable) observable;
+            this.atualizaDados();
+            this.view.atualizaDadosClimaticos();
+        }
     }
 }
 

@@ -2,39 +2,46 @@ package com.ufes.dadosclimaticos.service;
 
 import com.ufes.dadosclimaticos.logger.ILogger;
 import com.ufes.dadosclimaticos.model.DadosClimaticos;
-import com.ufes.dadosclimaticos.model.observer.IObserver;
+import com.ufes.dadosclimaticos.model.observer.DadosClimaticosObservable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EstacaoClimaticaService {
-    private final ILogger log;
-    private List<IObserver> observers;
 
-    public EstacaoClimaticaService(ILogger log){
+public final class EstacaoClimaticaService {
+    private final ILogger log;
+    private DadosClimaticosObservable dadosClimaticosObservable;
+
+    public EstacaoClimaticaService(ILogger log)  {
         this.log = log;
-        this.observers = new ArrayList<>();
+        this.dadosClimaticosObservable = new DadosClimaticosObservable(this.lerDadosClimaticos());
     }    
     
-     public void addObserver(IObserver observer){
-         this.observers.add(observer);
-     }
-    
-    public void removeObserver(IObserver observer){
-        this.observers.remove(observer);
+    public void salvarDadosClimaticos(DadosClimaticos dadoClimatico) throws Exception {
+        this.log.salvar(dadoClimatico);
+        this.dadosClimaticosObservable.addDados(dadoClimatico);
     }
     
-    public void salvarDadosClimaticos(DadosClimaticos dadoClimatico) throws Exception{
-        this.log.logSalvar(dadoClimatico);
-        this.notifyObservers(dadoClimatico);
+    public void removerDadosClimaticos(DadosClimaticos dadoClimatico) throws Exception {
+//        this.log.remover(dadoClimatico);
+        this.dadosClimaticosObservable.removeDados(dadoClimatico);
     }
     
-    
-    
-    public void notifyObservers(DadosClimaticos dadoClimatico){
-      List<IObserver> list = observers;
-        for(IObserver observer : list){
-            observer.update(dadoClimatico);
+    public List<DadosClimaticos> lerDadosClimaticos() {
+        try {
+            if (this.log.ler() != null) {
+                return this.log.ler();
+            }
+        } catch (Exception ex) {
+            return new ArrayList<>();
         }
+        return null;
+    } 
+    
+    public DadosClimaticosObservable getDadosClimaticosObservable() {
+        return dadosClimaticosObservable;
     }
 
+    public void setDadosClimaticosObservable(DadosClimaticosObservable dadosClimaticosObservable) {
+        this.dadosClimaticosObservable = dadosClimaticosObservable;
+    }
 }

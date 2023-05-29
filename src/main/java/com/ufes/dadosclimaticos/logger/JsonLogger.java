@@ -15,12 +15,17 @@ public class JsonLogger implements ILogger{
     
     
     @Override
-    public void logSalvar(DadosClimaticos dadosClimaticos) throws Exception {
+    public void salvar(DadosClimaticos dadosClimaticos) throws Exception {
         this.jsonLogger.gravarArquivo(dadosClimaticos);
     }
 
     @Override
-    public List<DadosClimaticos> Logler() throws Exception {
+    public void remover(DadosClimaticos dadosClimaticos) throws Exception {
+        this.jsonLogger.removerDadoArquivo(dadosClimaticos);
+    }
+    
+    @Override
+    public List<DadosClimaticos> ler() throws Exception {
         return this.jsonLogger.getDadosArquivo();
     }
    
@@ -30,4 +35,6 @@ public class JsonLogger implements ILogger{
         }
         return json;
     }
+
+    
 }

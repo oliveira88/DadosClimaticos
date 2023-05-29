@@ -1,30 +1,26 @@
 package com.ufes.dadosclimaticos.presenter;
 
 import com.ufes.dadosclimaticos.model.DadosClimaticos;
+import com.ufes.dadosclimaticos.model.observer.DadosClimaticosObservable;
+import com.ufes.dadosclimaticos.model.observer.IObservable;
 import com.ufes.dadosclimaticos.model.observer.IObserver;
 import com.ufes.dadosclimaticos.util.ConvertDate;
 import com.ufes.dadosclimaticos.view.UltimaAtualizacaoTempoView;
-import java.util.List;
 
 public class UltimaAtualizacaoTempoPresenter implements IObserver {
 
     private final UltimaAtualizacaoTempoView view;
-    private List<DadosClimaticos> listDadosClimaticos;
+    private DadosClimaticosObservable dadosClimaticosObservable;
 
-    public UltimaAtualizacaoTempoPresenter(List<DadosClimaticos> listDadosClimaticos) {
+    public UltimaAtualizacaoTempoPresenter(DadosClimaticosObservable dadosClimaticosObservable) {
+        this.dadosClimaticosObservable = dadosClimaticosObservable;
         this.view = new UltimaAtualizacaoTempoView();
-        if (listDadosClimaticos != null) {
-            this.listDadosClimaticos = listDadosClimaticos;
-        }
-
-        initAtualizacaoDadosClimaticos();
-
+        this.initAtualizacaoDadosClimaticos();
         this.view.setVisible(true);
-
     }
 
     private DadosClimaticos getDadosClimaitcoMaisRecente() {
-        return this.listDadosClimaticos.stream().max((dadoUm, dadoDois) -> dadoUm.getData().compareTo(dadoDois.getData())).orElse(null);
+        return this.dadosClimaticosObservable.getDadosList().stream().max((dadoUm, dadoDois) -> dadoUm.getData().compareTo(dadoDois.getData())).orElse(null);
     }
 
     private void initAtualizacaoDadosClimaticos() {
@@ -40,17 +36,17 @@ public class UltimaAtualizacaoTempoPresenter implements IObserver {
             this.view.getjLbUmiValue().setText("");
             this.view.getjLbData().setText("");
         }
-
     }
-
+    
     @Override
-    public void update(DadosClimaticos dadosCimaticos) {
-        this.listDadosClimaticos.add(dadosCimaticos);
-        initAtualizacaoDadosClimaticos();
+    public void update(IObservable observable) {
+        if(observable instanceof DadosClimaticosObservable){
+            this.dadosClimaticosObservable = (DadosClimaticosObservable) observable;
+            initAtualizacaoDadosClimaticos();
+        }
     }
-
+    
     public UltimaAtualizacaoTempoView getView() {
         return view;
     }
-
 }

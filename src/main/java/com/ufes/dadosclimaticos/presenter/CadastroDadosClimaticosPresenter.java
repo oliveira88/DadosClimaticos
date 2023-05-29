@@ -33,17 +33,16 @@ public class CadastroDadosClimaticosPresenter {
             JOptionPane.showMessageDialog(view, "Dados climáticos inserido com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
 
         } catch (Exception ex) {
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(view, ex.getMessage(), "Slvar Dados climáticos", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(view, ex.getMessage(), "Salvar Dados climáticos", JOptionPane.ERROR_MESSAGE);
         }
     }
 
     private DadosClimaticos loadDadosClimaticos() throws Exception {
         this.checkFieldsIsEmpty();
         DadosClimaticos dadoClimatico = new DadosClimaticos();
-        dadoClimatico.setTemperatura(Double.parseDouble(this.view.getjTextTemperatura().getText()));
-        dadoClimatico.setPresao(Double.parseDouble(this.view.getjTextPressao().getText()));
-        dadoClimatico.setUmidade(Double.parseDouble(this.view.getJtxtUmidade().getText()));
+        dadoClimatico.setTemperatura(Double.valueOf(this.view.getjTextTemperatura().getText()));
+        dadoClimatico.setPresao(Double.valueOf(this.view.getjTextPressao().getText()));
+        dadoClimatico.setUmidade(Double.valueOf(this.view.getJtxtUmidade().getText()));
         dadoClimatico.setData(getDateOfTextField());
         return dadoClimatico;
     }
@@ -57,16 +56,11 @@ public class CadastroDadosClimaticosPresenter {
         return localDate;    
     }
 
-    private boolean fieldsIsEmpty() {
-        return view.getJtxtData().getText().replaceAll("\\s", "").equals("//")
+    private void checkFieldsIsEmpty() throws Exception {
+        if (view.getJtxtData().getText().replaceAll("\\s", "").equals("//")
                 || view.getjTextPressao().getText().equals("")
                 || view.getJtxtUmidade().getText().equals("")
-                || view.getjTextTemperatura().getText().equals("");
-
-    }
-
-    private void checkFieldsIsEmpty() throws Exception {
-        if (fieldsIsEmpty()) {
+                || view.getjTextTemperatura().getText().equals("")) {
             throw new Exception("Todos os campos devem ser preenchidos!");
         }
 
