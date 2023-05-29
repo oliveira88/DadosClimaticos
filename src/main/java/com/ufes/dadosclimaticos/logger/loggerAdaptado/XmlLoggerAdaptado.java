@@ -63,8 +63,6 @@ public class XmlLoggerAdaptado {
 
         TransformerFactory tf = TransformerFactory.newInstance();
         Transformer t = tf.newTransformer();
-        t.setOutputProperty(OutputKeys.INDENT, "yes");
-        t.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
         DOMSource domSource = new DOMSource(d);
         StreamResult streamResult = new StreamResult(new File(arquivoPath));
 
