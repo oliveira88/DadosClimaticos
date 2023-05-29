@@ -59,6 +59,7 @@ public class RegistrosDadosClimaticosPresenter implements IObserver {
             this.estacaoClimaticaService.removerDadosClimaticos(this.obterDadoSelecionadoTable());
             JOptionPane.showMessageDialog(view, "Dados climáticos removido com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception ex) {
+            ex.printStackTrace();
             JOptionPane.showMessageDialog(view, ex.getMessage(), "Remover dados climáticos", JOptionPane.ERROR_MESSAGE);
         }
     }

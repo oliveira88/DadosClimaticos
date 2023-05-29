@@ -8,11 +8,14 @@ import java.time.format.DateTimeFormatter;
 
 public class ConvertDate {
         
-      public static LocalDate stringToLocalDate(String dateString) throws ParseException {
+    public static LocalDate stringToLocalDate(String dateString) throws ParseException {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate ld = LocalDate.parse(dateString, dtf);
-
-        return ld;
+        return LocalDate.parse(dateString, dtf);
+    }
+      
+    public static LocalDate stringToLocalDate(String dateString, String format) throws ParseException {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern(format);
+        return LocalDate.parse(dateString, dtf);
     }
 
     public static String localDateToString(LocalDate date) {

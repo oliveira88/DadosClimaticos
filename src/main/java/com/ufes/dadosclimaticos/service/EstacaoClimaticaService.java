@@ -22,7 +22,7 @@ public final class EstacaoClimaticaService {
     }
     
     public void removerDadosClimaticos(DadosClimaticos dadoClimatico) throws Exception {
-//        this.log.remover(dadoClimatico);
+        this.log.remover(dadoClimatico);
         this.dadosClimaticosObservable.removeDados(dadoClimatico);
     }
     

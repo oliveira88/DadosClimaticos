@@ -1,6 +1,7 @@
 package com.ufes.dadosclimaticos.logger.loggerAdaptado;
 
 import com.ufes.dadosclimaticos.model.DadosClimaticos;
+import com.ufes.dadosclimaticos.util.ConvertDate;
 import java.io.File;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -71,27 +72,42 @@ public class XmlLoggerAdaptado {
 
     }
     
-    public void removerDadoArquivo(DadosClimaticos dadosClimaticos) throws Exception {
+    public void removerDadoArquivo(DadosClimaticos dadoARemover) throws Exception {
         File file = new File(arquivoPath);
-//        List<DadosClimaticos> dadosClimaticosList = new ArrayList<>();;
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         DocumentBuilder db = dbf.newDocumentBuilder();
         Document doc = db.parse(file);
         doc.getDocumentElement().normalize();
         NodeList nodeList = doc.getElementsByTagName("post");
-//        for (int itr = 0; itr < nodeList.getLength(); itr++) {
-//            DadosClimaticos dadoClimatico = new DadosClimaticos();
-//            Node node = nodeList.item(itr);
-//            Element eElement = (Element) node;
-//            if (node.getNodeType() == Node.ELEMENT_NODE) {
-//                dadoClimatico.setData(LocalDate.parse(eElement.getElementsByTagName("data").item(0).getTextContent()));
-//                dadoClimatico.setPresao(Double.valueOf(eElement.getElementsByTagName("presao").item(0).getTextContent()));
-//                dadoClimatico.setTemperatura(Double.valueOf(eElement.getElementsByTagName("temperatura").item(0).getTextContent()));
-//                dadoClimatico.setUmidade(Double.valueOf(eElement.getElementsByTagName("umidade").item(0).getTextContent()));
-//                dadosClimaticosList.add(dadoClimatico);
-//            }
-//        }
-//        return dadosClimaticosList;
+        for (int itr = 0; itr < nodeList.getLength(); itr++) {
+            Node node = nodeList.item(itr);
+            Element eElement = (Element) node;
+            if (node.getNodeType() == Node.ELEMENT_NODE) {
+                String data = eElement.getElementsByTagName("data").item(0).getTextContent();
+                String pressao = eElement.getElementsByTagName("presao").item(0).getTextContent();
+                String temperatura = eElement.getElementsByTagName("temperatura").item(0).getTextContent();
+                String umidade = eElement.getElementsByTagName("umidade").item(0).getTextContent();
+                
+                DadosClimaticos dado = new DadosClimaticos(
+                    Double.valueOf(temperatura),
+                    Double.valueOf(umidade),
+                    Double.valueOf(pressao),
+                    ConvertDate.stringToLocalDate(data, "yyyy-MM-dd")
+                );
+                
+                if(dado.equals(dadoARemover)) {
+                    node.getParentNode().removeChild(node);
+                    break;
+                }
+            }
+        }
+        TransformerFactory tf = TransformerFactory.newInstance();
+        Transformer transformer = tf.newTransformer();
+        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+        transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
+        DOMSource domSource = new DOMSource(doc);
+        StreamResult streamResult = new StreamResult(new File(arquivoPath));
+        transformer.transform(domSource, streamResult);
     }
     
     public List<DadosClimaticos> lersArquivo() throws Exception {
